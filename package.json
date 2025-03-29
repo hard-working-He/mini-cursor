@@ -1,0 +1,21 @@
+{
+  "name": "mini-cursor",
+  "version": "1.0.0",
+  "description": "A mini code editor built with Electron and Go",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "go build -o backend main.go"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^26.0.12",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.45.0"
+  }
+}

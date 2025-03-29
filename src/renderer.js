@@ -1,9 +1,9 @@
-require.config({ paths: { 'vs': '../node_modules/monaco-editor/min/vs' }});
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './components/App';
 
-require(['vs/editor/editor.main'], function() {
-    let editor = monaco.editor.create(document.getElementById('editor'), {
-        value: '// 在这里编写代码\n',
-        language: 'javascript',
-        theme: 'vs-dark'
-    });
-}); 
+// 创建 React 18 的根节点
+const root = createRoot(document.getElementById('root'));
+
+// 渲染 React 应用
+root.render(<App />); 

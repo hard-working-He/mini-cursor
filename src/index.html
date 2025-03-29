@@ -3,15 +3,164 @@
 <head>
     <title>Mini Cursor</title>
     <style>
-        #editor {
+        /* 重置默认边距 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 确保 html 和 body 占满整个视窗 */
+        html, body {
             width: 100%;
             height: 100%;
+            overflow: hidden;
+        }
+
+        /* 添加布局样式 */
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .toolbar {
+            padding: 8px;
+            background: #1e1e1e;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .editor-wrapper {
+            flex: 1;
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+        }
+
+        .output {
+            height: 150px;
+            background: #1e1e1e;
+            color: #fff;
+            padding: 10px;
+            font-family: monospace;
+            overflow: auto;
+            border-top: 1px solid #333;
+            flex-shrink: 0;
+        }
+
+        /* 修改运行按钮样式 */
+        .run-button {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            height: 28px;
+            padding: 0 10px;
+            border-radius: 4px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            color: #89D185;
+            font-size: 13px;
+        }
+
+        .run-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .run-button svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* 修改工具提示样式 */
+        .run-button-container {
+            position: relative;
+        }
+
+        .run-button-container:hover::after {
+            content: "Ctrl+Enter";
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #252525;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #ffffff;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100%;
+            min-height: 0;
+        }
+
+        .file-tree {
+            width: 250px;
+            background: #252526;
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .file-tree-header {
+            padding: 10px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-tree-content {
+            flex: 1;
+            overflow: auto;
+        }
+
+        .file-item {
+            padding: 4px 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .file-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .editor-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .save-button {
+            margin-left: 8px;
+            padding: 0 10px;
+            height: 28px;
+            background: transparent;
+            border: 1px solid #89D185;
+            color: #89D185;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background: rgba(137, 209, 133, 0.1);
         }
     </style>
 </head>
 <body>
-    <div id="editor"></div>
-    <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
-    <script src="renderer.js"></script>
+    <div id="root"></div>
+    <script src="../dist/bundle.js"></script>
 </body>
 </html> 

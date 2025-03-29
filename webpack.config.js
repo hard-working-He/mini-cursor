@@ -36,7 +36,20 @@ module.exports = {
     },
     plugins: [
         new MonacoWebpackPlugin({
-            languages: ['javascript', 'typescript', 'json'],
+            languages: [
+                'javascript',
+                'typescript',
+                'html',
+                'css',
+                'json',
+                'markdown',
+                'python',
+                'go',
+                'java',
+                'cpp',
+                'c',
+                'rust'
+            ],
             filename: '[name].worker.js',
             customLanguages: [
                 {

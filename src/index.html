@@ -99,7 +99,7 @@
         .app-container {
             display: flex;
             height: 100%;
-            min-height: 0;
+            overflow: hidden;
         }
 
         .file-tree {
@@ -108,7 +108,7 @@
             border-right: 1px solid #333;
             display: flex;
             flex-direction: column;
-            flex-shrink: 0;
+            overflow: hidden;
         }
 
         .file-tree-header {
@@ -117,11 +117,45 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-shrink: 0;
+            background: #252526;
+            z-index: 1;
         }
 
         .file-tree-content {
-            flex: 1;
-            overflow: auto;
+            flex-grow: 1;
+            height: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* 滚动条样式 */
+        .file-tree-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .file-tree-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .file-tree-content::-webkit-scrollbar-thumb {
+            background-color: #555;
+            border-radius: 4px;
+        }
+        
+        .file-tree-content::-webkit-scrollbar-thumb:hover {
+            background-color: #666;
+        }
+
+        .file-tree-children {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .file-tree-item {
+            width: 100%;
+            min-height: 24px;
+            overflow: hidden;
         }
 
         .file-item {
@@ -130,10 +164,16 @@
             display: flex;
             align-items: center;
             gap: 4px;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-height: inherit;
+            color: #d4d4d4;
         }
 
         .file-item:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .editor-container {
@@ -156,6 +196,29 @@
 
         .save-button:hover {
             background: rgba(137, 209, 133, 0.1);
+        }
+
+        /* 确保空状态也能正确显示 */
+        .empty-state {
+            padding: 20px;
+            color: #888;
+            text-align: center;
+            user-select: none;
+        }
+
+        /* 添加文件树按钮样式 */
+        .file-tree-header button {
+            padding: 4px 8px;
+            background: transparent;
+            border: 1px solid #454545;
+            color: #d4d4d4;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .file-tree-header button:hover {
+            background: rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>

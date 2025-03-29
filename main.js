@@ -96,4 +96,56 @@ ipcMain.handle('file:list', async () => {
         type: file.isDirectory() ? 'directory' : 'file',
         path: path.join(currentDir, file.name)
     }));
-}); 
+});
+
+// 添加获取文件夹内容的处理程序
+ipcMain.handle('dialog:openDirectory', async () => {
+    try {
+        const { canceled, filePaths } = await dialog.showOpenDialog({
+            properties: ['openDirectory']
+        });
+
+        if (!canceled && filePaths.length > 0) {
+            const dirPath = filePaths[0];
+            const files = await readDirectoryRecursive(dirPath);
+            return {
+                path: dirPath,
+                files: files
+            };
+        }
+        return null;
+    } catch (error) {
+        console.error('Error opening directory:', error);
+        throw error;
+    }
+});
+
+// 递归读取文件夹内容
+async function readDirectoryRecursive(dirPath) {
+    const files = await fs.readdir(dirPath, { withFileTypes: true });
+    const result = [];
+
+    for (const file of files) {
+        const fullPath = path.join(dirPath, file.name);
+        if (file.isDirectory()) {
+            const subFiles = await readDirectoryRecursive(fullPath);
+            result.push({
+                name: file.name,
+                path: fullPath,
+                type: 'directory',
+                children: subFiles
+            });
+        } else {
+            // 获取文件扩展名
+            const ext = path.extname(file.name).toLowerCase();
+            result.push({
+                name: file.name,
+                path: fullPath,
+                type: 'file',
+                extension: ext
+            });
+        }
+    }
+
+    return result;
+} 

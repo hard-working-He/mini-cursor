@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import * as monaco from 'monaco-editor';
-import FileTree from './FileTree';
+import FileTree from './filetree/FileTree';
 import Toolbar from './Toolbar';
 import Editor from './Editor';
 import OutputPanel from './OutputPanel';

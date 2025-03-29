@@ -1,33 +1,15 @@
 import React, { useState } from 'react';
+import { ArrowIcon, getFileIcon } from './FileIcons';
+import './FileTree.css';
 
-const FileIcon = ({ type, extension }) => {
-    // 简化图标，只根据文件类型和主要语言分类显示
-    const getIcon = () => {
-        if (type === 'directory') {
-            return '📁';
-        }
-        
-        // 根据文件类型分组显示图标
-        const ext = extension.toLowerCase();
-        if (['.js', '.jsx', '.ts', '.tsx'].includes(ext)) {
-            return '📝'; // JavaScript/TypeScript 文件
-        }
-        if (['.html', '.css'].includes(ext)) {
-            return '🌐'; // Web 文件
-        }
-        if (['.py', '.go', '.java', '.cpp', '.c', '.rs'].includes(ext)) {
-            return '⚙️'; // 编程语言文件
-        }
-        if (['.json', '.md'].includes(ext)) {
-            return '📄'; // 文档文件
-        }
-        return '📄'; // 默认文件图标
-    };
-
-    return <span className="file-icon">{getIcon()}</span>;
+const FileIcon = ({ type, extension, isExpanded }) => {
+    if (type === 'directory') {
+        return <ArrowIcon isExpanded={isExpanded} />;
+    }
+    return getFileIcon(extension);
 };
 
-const FileTreeItem = ({ item, onSelect, level = 0 }) => {
+const FileTreeItem = ({ item, onSelect, level = 0, activeFile }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const handleClick = () => {
@@ -38,14 +20,20 @@ const FileTreeItem = ({ item, onSelect, level = 0 }) => {
         }
     };
 
+    const isActive = activeFile === item.path;
+
     return (
         <div className="file-tree-item">
             <div
-                className={`file-item ${item.type}`}
-                style={{ paddingLeft: `${level * 20}px` }}
+                className={`file-item ${item.type} ${isActive ? 'active' : ''}`}
+                style={{ paddingLeft: `${level * 12 + 24}px` }}
                 onClick={handleClick}
             >
-                <FileIcon type={item.type} extension={item.extension || ''} />
+                <FileIcon 
+                    type={item.type} 
+                    extension={item.extension || ''} 
+                    isExpanded={isExpanded}
+                />
                 <span className="file-name">{item.name}</span>
             </div>
             {item.type === 'directory' && isExpanded && (
@@ -56,6 +44,7 @@ const FileTreeItem = ({ item, onSelect, level = 0 }) => {
                             item={child}
                             onSelect={onSelect}
                             level={level + 1}
+                            activeFile={activeFile}
                         />
                     ))}
                 </div>
@@ -64,7 +53,7 @@ const FileTreeItem = ({ item, onSelect, level = 0 }) => {
     );
 };
 
-const FileTree = ({ onFileSelect }) => {
+const FileTree = ({ onFileSelect, currentFile }) => {
     const [files, setFiles] = useState([]);
 
     const handleOpenDirectory = async () => {
@@ -87,7 +76,12 @@ const FileTree = ({ onFileSelect }) => {
     return (
         <div className="file-tree">
             <div className="file-tree-header">
-                <button onClick={handleOpenDirectory}>打开文件夹</button>
+                <span className="file-tree-title">文件浏览器</span>
+                <div className="file-tree-actions">
+                    <button className="file-tree-button" onClick={handleOpenDirectory}>
+                        打开文件夹
+                    </button>
+                </div>
             </div>
             <div className="file-tree-content">
                 {files.length > 0 ? (
@@ -96,6 +90,7 @@ const FileTree = ({ onFileSelect }) => {
                             key={index}
                             item={item}
                             onSelect={handleFileSelect}
+                            activeFile={currentFile}
                         />
                     ))
                 ) : (

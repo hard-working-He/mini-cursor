@@ -4,6 +4,7 @@ import FileTree from './filetree/FileTree';
 import Toolbar from './Toolbar';
 import Editor from './Editor';
 import OutputPanel from './OutputPanel';
+import Chat from './chat/Chat';
 
 const App = () => {
     const [currentFile, setCurrentFile] = useState(null);
@@ -84,6 +85,7 @@ const App = () => {
                 <Editor onInit={handleEditorInit} />
                 <OutputPanel ref={outputRef} />
             </div>
+            <Chat />
         </div>
     );
 };

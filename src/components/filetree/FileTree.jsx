@@ -76,7 +76,7 @@ const FileTree = ({ onFileSelect, currentFile }) => {
     return (
         <div className="file-tree">
             <div className="file-tree-header">
-                <span className="file-tree-title">文件浏览器</span>
+                <span className="file-tree-title">文件浏览</span>
                 <div className="file-tree-actions">
                     <button className="file-tree-button" onClick={handleOpenDirectory}>
                         打开文件夹

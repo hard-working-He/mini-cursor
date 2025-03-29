@@ -35,5 +35,7 @@ contextBridge.exposeInMainWorld('api', {
       // 添加更多语言支持
     };
     return languageMap[ext] || 'plaintext';
-  }
+  },
+
+  chat: (message) => ipcRenderer.invoke('chat:send', message),
 }) 

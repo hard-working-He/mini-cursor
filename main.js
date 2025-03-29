@@ -3,7 +3,6 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
 const { spawn } = require('child_process')
 const fs = require('fs').promises
-const axios = require('axios')
 
 try {
   require('electron-reloader')(module, {
@@ -150,41 +149,4 @@ async function readDirectoryRecursive(dirPath) {
     }
 
     return result;
-}
-
-// 智谱 AI 聊天处理
-ipcMain.handle('chat:send', async (event, message) => {
-    try {
-        const response = await axios.post(
-            'https://open.bigmodel.cn/api/paas/v4/chat/completions',
-            {
-                model: "glm-4",
-                messages: [{
-                    role: "user",
-                    content: message
-                }],
-                temperature: 0.7,
-                stream: false
-            },
-            {
-                headers: {
-                    'Authorization': 'Bearer 4bd81c927a744f368cb794948000e851.gc0gRhtYIDI9txzk',
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
-        
-        // 确保正确获取响应内容
-        if (response.data && response.data.choices && response.data.choices[0]) {
-            return response.data.choices[0].message.content;
-        } else {
-            throw new Error('Invalid response format');
-        }
-    } catch (error) {
-        console.error('ChatGLM API error:', error);
-        if (error.response) {
-            console.error('Error details:', error.response.data);
-        }
-        throw new Error(error.response?.data?.error?.message || error.message);
-    }
-}); 
+} 

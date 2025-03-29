@@ -144,4 +144,17 @@
 @keyframes loading {
     0%, 80%, 100% { opacity: 0; }
     40% { opacity: 1; }
+}
+
+@keyframes codeInsertion {
+    0% {
+        background-color: rgba(66, 184, 131, 0.2);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+.code-insertion-highlight {
+    animation: codeInsertion 1.5s ease-out;
 } 

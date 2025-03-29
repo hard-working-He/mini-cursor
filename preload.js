@@ -1,4 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron')
+const { chatCompletion } = require('./src/api/zhipuai.js')
 
 contextBridge.exposeInMainWorld('api', {
   // 文件操作 API
@@ -37,5 +38,12 @@ contextBridge.exposeInMainWorld('api', {
     return languageMap[ext] || 'plaintext';
   },
 
-  chat: (message) => ipcRenderer.invoke('chat:send', message),
+  chat: async (message) => {
+    try {
+      return await chatCompletion(message);
+    } catch (error) {
+      console.error('Chat API Error:', error);
+      throw error;
+    }
+  },
 }) 

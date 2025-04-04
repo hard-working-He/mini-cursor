@@ -1,5 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron')
-const { chatCompletion } = require('./src/api/zhipuai.js')
+const { zhipuChat, claudeChat } = require('./src/api/chat.js')
 
 contextBridge.exposeInMainWorld('api', {
   // 文件操作 API
@@ -38,9 +38,9 @@ contextBridge.exposeInMainWorld('api', {
     return languageMap[ext] || 'plaintext';
   },
 
-  chat: async (message) => {
+  chat: async (message, type = 'zhipu') => {
     try {
-      return await chatCompletion(message);
+      return await (type === 'zhipu' ? zhipuChat(message) : claudeChat(message));
     } catch (error) {
       console.error('Chat API Error:', error);
       throw error;

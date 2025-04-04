@@ -2,9 +2,17 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Chat.css';
 
 // Header Component
-const ChatHeader = () => (
+const ChatHeader = ({ selectedModel, onModelChange }) => (
     <div className="chat-header">
         <span className="chat-title">AI 助手</span>
+        <select 
+            className="model-select"
+            value={selectedModel}
+            onChange={(e) => onModelChange(e.target.value)}
+        >
+            <option value="zhipu">智谱 AI</option>
+            <option value="claude">Claude</option>
+        </select>
     </div>
 );
 
@@ -64,6 +72,7 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [selectedModel, setSelectedModel] = useState('zhipu');
     const messagesEndRef = useRef(null);
     const editorRef = useRef(null);
     const [streamContent, setStreamContent] = useState('');
@@ -217,7 +226,7 @@ const Chat = () => {
         };
 
         try {
-            const response = await window.api.chat(userMessage);
+            const response = await window.api.chat(userMessage, selectedModel);
             if (typeof response === 'string' && response.startsWith('错误:')) {
                 setMessages(prev => [...prev, { 
                     role: 'error', 
@@ -253,7 +262,10 @@ const Chat = () => {
 
     return (
         <div className="chat-container">
-            <ChatHeader />
+            <ChatHeader 
+                selectedModel={selectedModel}
+                onModelChange={setSelectedModel}
+            />
             <ChatContent 
                 messages={messages}
                 isLoading={isLoading}

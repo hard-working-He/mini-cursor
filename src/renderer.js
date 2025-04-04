@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './components/App';
+import './components/Editor.css';
 
 // 创建 React 18 的根节点
 const root = createRoot(document.getElementById('root'));

@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import * as monaco from 'monaco-editor';
 import FileTree from './filetree/FileTree';
 import Toolbar from './Toolbar';
 import Editor from './Editor';
@@ -16,10 +15,7 @@ const App = () => {
         window.editor = editor; // 如果其他地方还需要访问编辑器实例
 
         // 添加快捷键支持
-        editor.addCommand(
-            monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
-            () => runCode()
-        );
+        editor.addCommand("Ctrl-Enter", runCode);
     };
 
     const runCode = () => {

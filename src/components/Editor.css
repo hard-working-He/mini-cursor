@@ -1,0 +1,382 @@
+/* 基础容器样式 */
+.editor-wrapper {
+  height: 100%;
+  width: 100%;
+  background-color: #1e1e1e;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Mono', Menlo, Monaco, 'Courier New', monospace;
+}
+
+/* 编辑器主体样式 */
+.cm-editor {
+  height: 100%;
+  font-size: 14px;
+  color: #d4d4d4;
+  background-color: #1e1e1e;
+}
+
+/* 滚动区域样式 */
+.cm-scroller {
+  overflow: auto;
+  line-height: 1.6;
+  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* 内容区域样式 */
+.cm-content {
+  white-space: pre;
+  padding: 0;
+}
+
+/* 行样式 */
+.cm-line {
+  padding: 0 16px;
+  min-height: 22px;
+  line-height: 22px;
+}
+
+/* 光标样式 */
+.cm-cursor {
+  border-left: 2px solid #80bdff !important;
+  border-radius: 1px;
+}
+
+/* 活动行样式 */
+.cm-activeLine {
+  background-color: rgba(33, 33, 33, 0.8) !important;
+}
+
+.cm-activeLineGutter {
+  background-color: rgba(33, 33, 33, 0.8) !important;
+  color: #d7d7d7 !important;
+}
+
+/* 行号和装订线样式 */
+.cm-gutters {
+  background-color: #1e1e1e !important;
+  color: #858585;
+  border: none !important;
+  border-right: 1px solid #333 !important;
+  padding: 0 4px 0 0;
+  min-width: 40px;
+}
+
+.cm-lineNumbers {
+  color: #858585;
+  font-size: 12px;
+}
+
+.cm-gutterElement {
+  padding-left: 10px !important;
+  padding-right: 5px !important;
+}
+
+/* 选择区域样式 */
+.cm-selectionBackground {
+  background-color: rgba(38, 79, 120, 0.6) !important;
+}
+
+.cm-selectionMatch {
+  background-color: rgba(72, 72, 72, 0.5);
+}
+
+/* 匹配括号样式 */
+.cm-matchingBracket {
+  background-color: rgba(72, 72, 72, 0.8) !important;
+  outline: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: inherit !important;
+}
+
+.cm-nonmatchingBracket {
+  background-color: rgba(255, 18, 18, 0.2) !important;
+  color: #ff5555 !important;
+}
+
+/* 语法高亮样式 - VS Code Dark+ 主题 */
+.cm-keyword {
+  color: #569cd6;
+}
+
+.cm-def {
+  color: #9cdcfe;
+}
+
+.cm-operator {
+  color: #d4d4d4;
+}
+
+.cm-variable {
+  color: #9cdcfe;
+}
+
+.cm-variable-2 {
+  color: #9cdcfe;
+}
+
+.cm-variable-3 {
+  color: #4ec9b0;
+}
+
+.cm-type {
+  color: #4ec9b0;
+}
+
+.cm-property {
+  color: #9cdcfe;
+}
+
+.cm-qualifier {
+  color: #4ec9b0;
+}
+
+.cm-function {
+  color: #dcdcaa;
+}
+
+.cm-string {
+  color: #ce9178;
+}
+
+.cm-string-2 {
+  color: #ce9178;
+}
+
+.cm-number {
+  color: #b5cea8;
+}
+
+.cm-comment {
+  color: #6a9955;
+  font-style: italic;
+}
+
+.cm-meta {
+  color: #569cd6;
+}
+
+.cm-atom {
+  color: #569cd6;
+}
+
+.cm-tag {
+  color: #569cd6;
+}
+
+.cm-attribute {
+  color: #9cdcfe;
+}
+
+.cm-builtin {
+  color: #4ec9b0;
+}
+
+.cm-bracket {
+  color: #d4d4d4;
+}
+
+.cm-header {
+  color: #569cd6;
+  font-weight: bold;
+}
+
+.cm-quote {
+  color: #6a9955;
+  font-style: italic;
+}
+
+.cm-hr {
+  color: #d4d4d4;
+}
+
+.cm-link {
+  color: #3794ff;
+  text-decoration: underline;
+}
+
+.cm-error {
+  color: #f14c4c;
+}
+
+.cm-negative {
+  color: #f14c4c;
+}
+
+.cm-positive {
+  color: #6a9955;
+}
+
+.cm-strong {
+  color: #569cd6;
+  font-weight: bold;
+}
+
+.cm-em {
+  color: #ce9178;
+  font-style: italic;
+}
+
+/* 滚动条样式 */
+.cm-scroller::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+.cm-scroller::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cm-scroller::-webkit-scrollbar-thumb {
+  background-color: rgba(121, 121, 121, 0.4);
+  border-radius: 7px;
+  border: 4px solid #1e1e1e;
+}
+
+.cm-scroller::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 100, 100, 0.7);
+}
+
+.cm-scroller::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+/* 工具提示样式 */
+.cm-tooltip {
+  background-color: #252526 !important;
+  border: 1px solid #454545 !important;
+  border-radius: 3px;
+  color: #cccccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+  padding: 5px;
+}
+
+.cm-tooltip-autocomplete {
+  min-width: 300px;
+}
+
+.cm-tooltip-autocomplete > ul > li {
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+
+.cm-tooltip-autocomplete > ul > li[aria-selected] {
+  background-color: #04395e;
+}
+
+/* 代码折叠样式 */
+.cm-foldPlaceholder {
+  background-color: #37373d;
+  color: #cccccc;
+  border: none;
+  border-radius: 3px;
+  padding: 0 4px;
+  margin: 0 2px;
+  font-size: 90%;
+}
+
+/* 代码高亮动画 - 更柔和的蓝色 */
+.code-insertion-highlight {
+  background-color: rgba(38, 79, 120, 0.3);
+  animation: codeInsertion 1.5s ease-out;
+}
+
+@keyframes codeInsertion {
+  0% {
+    background-color: rgba(38, 79, 120, 0.3);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+/* 搜索高亮 */
+.cm-searchMatch {
+  background-color: rgba(234, 92, 0, 0.33);
+  outline: 1px solid rgba(234, 92, 0, 0.5);
+}
+
+.cm-searchMatch-selected {
+  background-color: rgba(253, 255, 0, 0.5);
+  outline: 1px solid rgba(253, 255, 0, 0.8);
+}
+
+/* 错误和警告标记 */
+.cm-diagnostic-error {
+  background-color: rgba(255, 0, 0, 0.15);
+  border-bottom: 2px wavy #f14c4c;
+  padding-bottom: 1px;
+}
+
+.cm-diagnostic-warning {
+  background-color: rgba(255, 255, 0, 0.15);
+  border-bottom: 2px wavy #cca700;
+  padding-bottom: 1px;
+}
+
+/* 确保编辑器获得焦点时没有轮廓 */
+.cm-editor.cm-focused {
+  outline: none !important;
+}
+
+/* 改进缩进指南 */
+.cm-indent-markers::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 行内链接样式 */
+.cm-link {
+  color: #3794ff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 行内代码样式 */
+.cm-inline-code {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  padding: 0 3px;
+  font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* 标记样式 */
+.cm-strikethrough {
+  text-decoration: line-through;
+}
+
+.cm-strong {
+  font-weight: bold;
+  color: #e2e2e2;
+}
+
+.cm-emphasis {
+  font-style: italic;
+  color: #e2e2e2;
+}
+
+/* 编辑器背景 */
+.cm-editor::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #1e1e1e;
+  z-index: -1;
+}
+
+/* 编辑器边框 */
+.cm-editor {
+  border: none;
+  box-shadow: none;
+}
+
+/* 确保编辑器占满容器 */
+.cm-editor, .cm-scroller {
+  width: 100%;
+  height: 100%;
+} 

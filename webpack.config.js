@@ -1,5 +1,4 @@
 const path = require('path');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -24,43 +23,10 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
-            },
-            {
-                test: /\.ttf$/,
-                type: 'asset/resource'
             }
         ]
     },
     resolve: {
         extensions: ['.js', '.jsx']
-    },
-    plugins: [
-        new MonacoWebpackPlugin({
-            languages: [
-                'javascript',
-                'typescript',
-                'html',
-                'css',
-                'json',
-                'markdown',
-                'python',
-                'go',
-                'java',
-                'cpp',
-                'c',
-                'rust'
-            ],
-            filename: '[name].worker.js',
-            customLanguages: [
-                {
-                    label: 'javascript',
-                    entry: 'typescript',
-                    worker: {
-                        id: 'vs/language/typescript/tsWorker',
-                        entry: 'vs/language/typescript/ts.worker'
-                    }
-                }
-            ]
-        })
-    ]
+    }
 }; 
